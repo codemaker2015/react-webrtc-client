@@ -9,7 +9,7 @@
     flex-direction: column;
 }
 
-.liveStreamId {
+.space {
     margin-left: 5px;
     margin-right: 5px;
 }
@@ -26,9 +26,11 @@
 .form-container-controls {
     margin: 15px;
     display: flex;
+    flex-direction: row;
+    text-align: center;
     justify-content: center;
     align-items: center;
-    width: 30%;
+    width: 40%;
     padding: 15px;
     background-color: aqua;
     border-radius: 20px;

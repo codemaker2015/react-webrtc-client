@@ -9,6 +9,7 @@ class LiveStreaming extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            side: 'side1',
             liveStreamId: '',
             error: false,
             errorMsg: '',
@@ -39,7 +40,7 @@ class LiveStreaming extends React.Component {
             );
         }
         else{
-            e.target.checked ? socket.emit('liveStream', "{'action': 'start', streamId: '" + this.state.liveStreamId + "' }") : socket.emit('liveStream', "{'action': 'stop', streamId: '" + this.state.liveStreamId + "' }")
+            e.target.checked ? socket.emit('liveStream', "{'action': 'start', 'side': '" + this.state.side + "', streamId: '" + this.state.liveStreamId + "' }") : socket.emit('liveStream', "{'action': 'stop', 'side': '" + this.state.side + "', streamId: '" + this.state.liveStreamId + "' }")
             this.setState({url: "https://appr.tc/r/" + this.state.liveStreamId})
         }
     }
@@ -49,8 +50,15 @@ class LiveStreaming extends React.Component {
             <div className="livestream-container">
                 <div class="form-container">
                     <div class="form-container-controls" id="container-liveStreamID">
+                        <label>Side &nbsp;</label>
+                        <select placeholder="Side" id="side" class="space" 
+                            onChange={e => this.setState({ side: e.target.value })} value={this.state.side}>
+                                <option value={"side1"}>Side 1</option>
+                                <option value={"side2"}>Side 2</option>
+                        </select>
+
                         <label>Live Stream ID &nbsp;</label>
-                        <input type="text" placeholder="Stream ID" id="liveStreamId" class="liveStreamId" maxlength="100"
+                        <input type="text" placeholder="Stream ID" id="liveStreamId" class="space" maxlength="100"
                             onChange={e => this.setState({ liveStreamId: e.target.value })} value={this.state.liveStreamId} />
 
                         <label class="switch">
